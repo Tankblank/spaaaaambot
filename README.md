@@ -1,2 +1,1 @@
-# spaaaaambot
-spaaaaambot
+# credit
