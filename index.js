@@ -17,14 +17,19 @@ client.on('disconnect', () => console.log('PROBOT credits miner had disconnected
 
 client.on('reconnecting', () => console.log('PROBOT credits miner is reconnecting...'));
 
+Client.on("guildMemberAdd", member => {
+   member.guild.defaultChannel.send("Welcome to: " + member.guild.name + " Hope you enjoy it here")
+});
 
-function timerFunc() {
-    client.on('message', msg => {
-        client.guilds.get(ServerID).channels.get(ChannelID).send(Math.random().toString(36).substring(7))
+Client.on("guildMemberRemove", member => {
+   member.guild.defaultChannel.send("Goodbye: " + member.user.username + " from " + member.guild.name)
+});
 
+Client.on("guildCreate", guild => {
+	console.log("Some one added the test bot to a server created by: " + guild.owner.user.username)
+});
 
-    });
-	Client.on("message", async (message) => {
+Client.on("message", async (message) => {
 	if (message.author.bot) return;
 	if (!message.content.startsWith(prefix)) return;
 	
@@ -56,6 +61,13 @@ function timerFunc() {
 		.addField("!cat", "Will send a random cat image");
 		message.channel.send({embed})
 	}
+
+
+function timerFunc() {
+    client.on('message', msg => {
+        client.guilds.get(ServerID).channels.get(ChannelID).send(Math.random().toString(36).substring(7))
+
+
 
 });
 }
